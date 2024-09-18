@@ -16,4 +16,6 @@ public interface BookingRepo {
 
 	List<Booking> findByBikeIdAndStatusNot(Long bikeId, String status);
 
+	double calculateTotalBikeAmount(Long bikeId);
+
 }

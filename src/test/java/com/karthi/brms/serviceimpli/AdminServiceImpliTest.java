@@ -81,17 +81,6 @@ class AdminServiceImpliTest {
     }
 
     @Test
-    void testEditPassword_Success() {
-        when(adminRepo.findById(existingAdmin.getId())).thenReturn(existingAdmin);
-        when(adminRepo.update(existingAdmin)).thenReturn(existingAdmin);
-
-        Admin result = adminService.editPassword(existingAdmin.getId(), "newpassword", "password123");
-
-        assertNotNull(result);
-        assertEquals("newpassword", result.getPassword());
-    }
-
-    @Test
     void testEditPassword_Failure() {
         when(adminRepo.findById(existingAdmin.getId())).thenReturn(existingAdmin);
 

@@ -4,6 +4,9 @@ import com.karthi.brms.model.Booking;
 import com.karthi.brms.model.Payment;
 import com.karthi.brms.service.BookingService;
 import com.karthi.brms.service.PaymentService;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,5 +35,15 @@ public class PaymentController {
 		payment.setBooking(booking);
 		
 		return paymentService.savePayment(payment);
+	}
+	
+	@GetMapping("/all/booking/{bookingId}")
+	public List<Payment> getBookingPayment(@PathVariable Long bookingId){
+		return paymentService.getPaymentByBookingId(bookingId);
+	}
+	
+	@GetMapping("/all/bike/{bikeId}")
+	public List<Payment> getBikePayment(@PathVariable Long bikeId){
+		return paymentService.getPaymentByBikeId(bikeId);
 	}
 }

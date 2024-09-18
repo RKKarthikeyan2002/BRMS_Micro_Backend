@@ -55,6 +55,7 @@ public class BikeController {
 	public Bike addBike(@RequestParam("number") String number, @RequestParam("brand") String brand,
 	        @RequestParam("model") String model, @RequestParam("km") String km, @RequestParam("year") String year,
 	        @RequestParam("bikeTypeName") String bikeTypeName, @RequestParam("customerId") Long customerId,
+	        @RequestParam("status") String status,
 	        @RequestParam("fromDate") Date fromDate,
 	        @RequestParam("toDate") Date toDate,
 	        @RequestParam(value = "aadhar", required = false) MultipartFile aadhar,
@@ -74,6 +75,7 @@ public class BikeController {
 	    bike.setKm(km);
 	    bike.setFromDate(fromDate);
 	    bike.setToDate(toDate);
+	    bike.setStatus(status);
 
 	    if (aadhar != null && !aadhar.isEmpty()) {
 	        bike.setAadhar(aadhar.getBytes());
@@ -86,8 +88,6 @@ public class BikeController {
 	    if (image != null && !image.isEmpty()) {
 	        bike.setImage(image.getBytes());
 	    }
-
-	    bike.setStatus("Pending");
 
 	    return bikeServiceImpli.addBike(bike);
 	}

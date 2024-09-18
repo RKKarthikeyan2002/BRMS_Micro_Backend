@@ -22,4 +22,6 @@ public interface BookingService {
 
 	Booking editTotalAmount(Long bookingId, double totalAmount);
 
+	double calculateBikeAmount(Long bikeId);
+
 }

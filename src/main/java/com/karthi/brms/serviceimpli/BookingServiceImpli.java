@@ -75,4 +75,8 @@ public class BookingServiceImpli implements BookingService {
 		return bRepo.update(booking);
 	}
 
+	@Override
+	public double calculateBikeAmount(Long bikeId) {
+		return bRepo.calculateTotalBikeAmount(bikeId);
+	}
 }

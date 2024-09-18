@@ -16,6 +16,7 @@ public class Bike {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique = true)
 	private String number;
 	private String brand;
 	private String model;

@@ -46,8 +46,16 @@ public class BookingRepoImpli implements BookingRepo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Booking> findByBikeIdAndStatusNot(Long bikeId, String status) {
-		String hql = "SELECT b FROM Booking b WHERE b.bike.id = :bikeId AND b.status <> :status";
-		return eManager.createQuery(hql).setParameter("bikeId", bikeId).setParameter("status", status).getResultList();
+		String hql = "SELECT b FROM Booking b WHERE b.bike.id = :bikeId AND b.status <> :status AND b.status <> :rejectstatus";
+		return eManager.createQuery(hql).setParameter("bikeId", bikeId).setParameter("status", status).setParameter("rejectstatus", "Rejected").getResultList();
+	}
+
+	@Override
+	public double calculateTotalBikeAmount(Long bikeId) {
+		String hql = "SELECT SUM(b.totalAmount) FROM Booking b WHERE b.bike.id = :bikeId";
+		Double totalAmount = (Double) eManager.createQuery(hql).setParameter("bikeId", bikeId).getSingleResult();
+
+	    return totalAmount != null ? totalAmount : 0.0;
 	}
 	
 }
